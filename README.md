@@ -13,3 +13,18 @@ Transformação: dbt Cloud
 Versionamento: GitHub
 
 BI: Power BI 
+
+## 🔧 Como Executar
+
+```bash
+# Instalar dependências
+dbt deps
+
+# Executar transformações
+dbt run
+
+# Executar testes
+dbt test
+
+# Gerar documentação
+dbt docs generate
