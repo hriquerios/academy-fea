@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg_sales_order_header
+    description: Staging table for sales order header information
+    columns:
+      - name: sales_order_id
+        description: Primary key for sales order records
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Foreign key to customer table
+        tests:
+          - not_null
+
+      - name: sales_person_id
+        description: Foreign key to sales person table
+
+      - name: territory_id
+        description: Foreign key to sales territory table
+
+      - name: bill_to_address_id
+        description: Foreign key to billing address
+
+      - name: ship_to_address_id
+        description: Foreign key to shipping address
+
+      - name: ship_method_id
+        description: Foreign key to shipping method table
+
+      - name: credit_card_id
+        description: Foreign key to credit card table
+
+      - name: currency_rate_id
+        description: Foreign key to currency rate table
+
+      - name: order_date
+        description: Date the sales order was created
+
+      - name: due_date
+        description: Date the order is due
+
+      - name: ship_date
+        description: Date the order was shipped
+
+      - name: order_status
+        description: Order current status (1=In process, 2=Approved, 3=Backordered, 4=Rejected, 5=Shipped, 6=Cancelled)
+        tests:
+          - not_null
+
+      - name: online_order_flag
+        description: Flag indicating if order was placed online
+
+      - name: account_number
+        description: Financial accounting number reference
+
+      - name: credit_card_approval_code
+        description: Credit card approval code
+
+      - name: subtotal
+        description: Sales subtotal (before tax and freight)
+
+      - name: tax_amount
+        description: Tax amount
+
+      - name: freight
+        description: Shipping cost
+
+      - name: total_due
+        description: Total due from customer (subtotal + tax + freight)
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

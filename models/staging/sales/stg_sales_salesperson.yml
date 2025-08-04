@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_sales_salesperson
+    description: Staging table for sales person information and performance metrics
+    columns:
+      - name: business_entity_id
+        description: Primary key for sales person records (links to person table)
+        tests:
+          - unique
+          - not_null
+
+      - name: territory_id
+        description: Foreign key to sales territory table
+
+      - name: sales_quota
+        description: Projected yearly sales target
+
+      - name: bonus
+        description: Bonus due if quota is met
+
+      - name: commission_pct
+        description: Commission percent received per sale
+
+      - name: sales_ytd
+        description: Sales year to date
+
+      - name: sales_last_year
+        description: Sales last year
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

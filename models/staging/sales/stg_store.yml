@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_store
+    description: Staging table for store information (business customers)
+    columns:
+      - name: business_entity_id
+        description: Primary key for store records
+        tests:
+          - unique
+          - not_null
+
+      - name: store_name
+        description: Name of the store
+        tests:
+          - not_null
+
+      - name: sales_person_id
+        description: Foreign key to sales person responsible for this store
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

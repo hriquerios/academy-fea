@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_sales_reason
+    description: Staging table for sales reason lookup data
+    columns:
+      - name: sales_reason_id
+        description: Primary key for sales reason records
+        data_tests:
+          - unique
+          - not_null
+
+      - name: sales_reason_name
+        description: Sales reason description (Price, Quality, Manufacturer, Review, etc.)
+        tests:
+          - not_null
+
+      - name: sales_reason_type
+        description: Category the sales reason belongs to (Marketing, Promotion, Other)
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

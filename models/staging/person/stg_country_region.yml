@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_country_region
+    description: Staging table for country and region data with standardized field names and data types
+    columns:
+      - name: country_region_code
+        description: ISO standard country or region code (primary key)
+        tests:
+          - unique
+          - not_null
+
+      - name: country_name
+        description: Full name of the country or region
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

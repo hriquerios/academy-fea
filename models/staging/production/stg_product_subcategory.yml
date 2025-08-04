@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_product_subcategory
+    description: Staging table for product subcategory data with category relationships
+    columns:
+      - name: product_subcategory_id
+        description: Primary key for product subcategory records
+        tests:
+          - unique
+          - not_null
+
+      - name: product_category_id
+        description: Foreign key to product category table
+        tests:
+          - not_null
+
+      - name: product_subcategory_name
+        description: Name of the product subcategory (Mountain Bikes, Road Bikes, Helmets, etc.)
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

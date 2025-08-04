@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_product_category
+    description: Staging table for product category data with standardized field names
+    columns:
+      - name: product_category_id
+        description: Primary key for product category records
+        tests:
+          - unique
+          - not_null
+
+      - name: product_category_name
+        description: Name of the product category (Bikes, Clothing, Accessories, etc.)
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

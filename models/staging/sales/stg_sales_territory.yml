@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_sales_territory
+    description: Staging table for sales territory information and performance metrics
+    columns:
+      - name: territory_id
+        description: Primary key for sales territory records
+        tests:
+          - unique
+          - not_null
+
+      - name: territory_name
+        description: Sales territory description (Northeast, Southwest, Canada, France, etc.)
+        tests:
+          - not_null
+
+      - name: country_region_code
+        description: ISO standard country or region code
+
+      - name: territory_group
+        description: Geographic area to which the sales territory belongs (North America, Europe, Pacific)
+
+      - name: sales_ytd
+        description: Sales year to date
+
+      - name: sales_last_year
+        description: Sales last year
+
+      - name: cost_ytd
+        description: Cost year to date
+
+      - name: cost_last_year
+        description: Cost last year
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

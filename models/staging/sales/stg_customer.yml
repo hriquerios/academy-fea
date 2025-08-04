@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: Staging table for customer information linking persons and stores
+    columns:
+      - name: customer_id
+        description: Primary key for customer records
+        tests:
+          - unique
+          - not_null
+
+      - name: person_id
+        description: Foreign key to person table (for individual customers)
+
+      - name: store_id
+        description: Foreign key to store table (for business customers)
+
+      - name: territory_id
+        description: Foreign key to sales territory table
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

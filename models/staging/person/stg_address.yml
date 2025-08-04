@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_address
+    description: Staging table for address data with standardized field names and data types
+    columns:
+      - name: address_id
+        description: Primary key for address records
+        tests:
+          - unique
+          - not_null
+
+      - name: address_line_1
+        description: First line of the address (street, number)
+
+      - name: address_line_2
+        description: Second line of the address (apartment, suite, etc.)
+
+      - name: city_name
+        description: Name of the city
+
+      - name: state_province_id
+        description: Foreign key to state/province table
+
+      - name: postal_code
+        description: Postal code or ZIP code
+
+      - name: spatial_location
+        description: Spatial location data for geographic coordinates
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

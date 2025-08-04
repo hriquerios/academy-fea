@@ -1,0 +1,75 @@
+version: 2
+
+models:
+  - name: stg_products
+    description: Staging table for product data with detailed product information
+    columns:
+      - name: product_id
+        description: Primary key for product records
+        tests:
+          - unique
+          - not_null
+
+      - name: product_subcategory_id
+        description: Foreign key to product subcategory table
+
+      - name: product_model_id
+        description: Foreign key to product model table
+
+      - name: product_name
+        description: Name of the product
+        tests:
+          - not_null
+
+      - name: product_number
+        description: Unique product identification number
+        tests:
+          - unique
+          - not_null
+
+      - name: finished_goods_flag
+        description: Flag indicating if product is sellable (true/false)
+
+      - name: standard_cost
+        description: Standard cost of the product
+
+      - name: list_price
+        description: Selling price of the product
+
+      - name: product_size
+        description: Product size (XS, S, M, L, XL, etc.)
+
+      - name: size_unit_measure_code
+        description: Unit of measure for size
+
+      - name: weight_unit_measure_code
+        description: Unit of measure for weight
+
+      - name: product_weight
+        description: Weight of the product
+
+      - name: product_line
+        description: Product line code (R = Road, M = Mountain, T = Touring, S = Standard)
+
+      - name: product_class
+        description: Product class code (H = High, M = Medium, L = Low)
+
+      - name: product_style
+        description: Product style code (W = Womens, M = Mens, U = Universal)
+
+      - name: product_color
+        description: Product color
+
+      - name: sell_start_date
+        description: Date the product became available for sale
+
+      - name: sell_end_date
+        description: Date the product was no longer available for sale
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null
