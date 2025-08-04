@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_sales_order_header_sales_reason
+    description: Staging table for sales order and sales reason relationships (cross-reference table)
+    columns:
+      - name: sales_order_id
+        description: Foreign key to sales order header table
+        tests:
+          - not_null
+
+      - name: sales_reason_id
+        description: Foreign key to sales reason table
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

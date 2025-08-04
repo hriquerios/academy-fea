@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_state_province
+    description: Staging table for state and province data with territory relationships
+    columns:
+      - name: state_province_id
+        description: Primary key for state/province records
+        tests:
+          - unique
+          - not_null
+
+      - name: state_province_code
+        description: State or province code abbreviation
+
+      - name: country_region_code
+        description: Foreign key to country/region table
+
+      - name: state_province_name
+        description: Full name of the state or province
+
+      - name: territory_id
+        description: Foreign key to sales territory table
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

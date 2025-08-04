@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_sales_order_detail
+    description: Staging table for sales order detail data with calculated metrics
+    columns:
+      - name: sales_order_detail_id
+        description: Primary key for sales order detail records
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_order_id
+        description: Foreign key to sales order header table
+        tests:
+          - not_null
+
+      - name: product_id
+        description: Foreign key to product table
+        tests:
+          - not_null
+
+      - name: special_offer_id
+        description: Foreign key to special offer table
+
+      - name: carrier_tracking_number
+        description: Shipment tracking number assigned by the shipping carrier
+
+      - name: order_quantity
+        description: Quantity ordered per product
+
+      - name: unit_price
+        description: Selling price of a single product
+
+      - name: unit_price_discount
+        description: Discount amount per unit
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

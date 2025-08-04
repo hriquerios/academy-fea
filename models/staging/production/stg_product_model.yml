@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_product_model
+    description: Staging table for product model data with standardized field names
+    columns:
+      - name: product_model_id
+        description: Primary key for product model records
+        tests:
+          - unique
+          - not_null
+
+      - name: product_model_name
+        description: Name of the product model (Mountain, Road, Touring, etc.)
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

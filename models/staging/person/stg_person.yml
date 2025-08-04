@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_person
+    description: Staging table for person data with standardized names and data types
+    columns:
+      - name: business_entity_id
+        description: Primary key for person records
+        tests:
+          - unique
+          - not_null
+
+      - name: person_type
+        description: Primary type of person
+
+      - name: first_name
+        description: First name of the person
+
+      - name: middle_name
+        description: Middle name of the person (optional)
+
+      - name: last_name
+        description: Last name of the person
+
+      - name: full_name
+        description: Complete name combining first, middle, and last names
+
+      - name: email_promotion
+        description: Email promotion preferences
+
+      - name: row_guid
+        description: Unique identifier for the row (GUID format)
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

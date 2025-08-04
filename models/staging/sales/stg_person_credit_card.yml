@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_person_credit_card
+    description: Staging table for person-credit card relationships (cross-reference table)
+    columns:
+      - name: business_entity_id
+        description: Foreign key to person table (business entity ID)
+        tests:
+          - not_null
+
+      - name: credit_card_id
+        description: Foreign key to credit card table
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null
