@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: Date dimension table for time-based analysis with comprehensive date attributes
+    columns:
+      - name: sk_date
+        description: Surrogate key for date dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: date_day
+        description: Calendar date (natural key)
+        tests:
+          - unique
+          - not_null
+
+      - name: day_of_week
+        description: Day of week number (0=Sunday, 6=Saturday)
+        tests:
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5, 6]
+
+      - name: month_number
+        description: Month number (1-12)
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+      - name: day_of_year
+        description: Day of year (1-366)
+
+      - name: year_number
+        description: Year number
+        tests:
+          - not_null
+
+      - name: quarter_number
+        description: Quarter number (1-4)
+        data_tests:
+          - accepted_values:
+              values: [1, 2, 3, 4]
+
+      - name: week_number
+        description: Week number of the year
+
+      - name: day_name
+        description: Full name of the day (Sunday, Monday, etc.)
+
+      - name: month_name
+        description: Full name of the month (January, February, etc.)
+
+      - name: month_abbreviation
+        description: Month abbreviation (Jan, Feb, etc.)
+
+      - name: quarter_name
+        description: Quarter name (Q1, Q2, Q3, Q4)
+
+      - name: weekday_weekend
+        description: Weekday or Weekend classification
+        tests:
+          - accepted_values:
+              values: ['Weekday', 'Weekend']

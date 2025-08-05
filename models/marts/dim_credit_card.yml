@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_credit_card
+    description: Credit card dimension table for payment analysis
+    columns:
+      - name: sk_creditcard
+        description: Surrogate key for credit card dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: credit_card_id
+        description: Natural key for credit card records
+        tests:
+          - unique
+          - not_null
+
+      - name: card_type
+        description: Type of credit card (Vista, SuperiorCard, ColonialVoice, etc.)
+        tests:
+          - not_null
+
+      - name: modified_date
+        description: Date when the record was last modified
+        tests:
+          - not_null

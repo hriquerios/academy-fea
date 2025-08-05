@@ -1,0 +1,111 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: Sales fact table at order detail level with all business metrics
+    columns:
+      - name: pk_fact_sales
+        description: Primary key for the fact table (sales order detail ID)
+        tests:
+          - unique
+          - not_null
+
+      - name: fk_creditcard
+        description: Foreign key to credit card dimension
+
+      - name: fk_customer
+        description: Foreign key to customer dimension
+        tests:
+          - not_null
+
+      - name: fk_date
+        description: Foreign key to date dimension
+        tests:
+          - not_null
+
+      - name: fk_location
+        description: Foreign key to location dimension
+
+      - name: fk_product
+        description: Foreign key to product dimension
+        tests:
+          - not_null
+
+      - name: fk_reason
+        description: Foreign key to reason dimension
+
+      - name: sales_order_id
+        description: Sales order ID (degenerate dimension)
+        tests:
+          - not_null
+
+      - name: sales_order_detail_id
+        description: Sales order detail ID (degenerate dimension)
+
+      - name: order_quantity
+        description: Quantity ordered (for question 4a - quantidade comprada)
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: Unit price of the product
+        tests:
+          - not_null
+
+      - name: gross_total
+        description: Gross sales amount before discount (unit_price * quantity)
+        tests:
+          - not_null
+
+      - name: net_total
+        description: Net sales amount after discount
+        tests:
+          - not_null
+
+      - name: total_sales_amount
+        description: Total sales amount for business questions (alias for gross_total)
+        tests:
+          - not_null
+
+      - name: quantity_sold
+        description: Quantity sold for business questions (alias for order_quantity)
+        tests:
+          - not_null
+
+      - name: has_promotion
+        description: Flag for promotion analysis (critical for question 4f)
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+      - name: promotion_flag
+        description: Text flag for promotion filtering
+        tests:
+          - accepted_values:
+              values: ['Has Promotion', 'No Promotion']
+
+      - name: order_date
+        description: Date the order was placed
+        tests:
+          - not_null
+
+      - name: order_status_desc
+        description: Order status description
+        tests:
+          - accepted_values:
+              values: ['In Process', 'Approved', 'Backordered', 'Rejected', 'Shipped', 'Cancelled', 'Unknown']
+
+      - name: product_name
+        description: Product name (denormalized for performance)
+
+      - name: customer_name
+        description: Customer name (denormalized for performance)
+
+      - name: city_name
+        description: City name (denormalized for performance)
+
+      - name: state_province_name
+        description: State/province name (denormalized for performance)
+
+      - name: country_name
+        description: Country name (denormalized for performance)

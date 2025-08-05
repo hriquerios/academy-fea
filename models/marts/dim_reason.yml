@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: dim_reason
+    description: Sales reason dimension table aggregated by order with promotion flags
+    columns:
+      - name: sk_reason
+        description: Surrogate key for sales reason dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_order_id
+        description: Natural key - sales order ID
+        tests:
+          - unique
+          - not_null
+
+      - name: reason_names_agg
+        description: Aggregated sales reason names separated by comma
+
+      - name: reason_types_agg
+        description: Aggregated sales reason types separated by comma
+
+      - name: has_promotion
+        description: Flag indicating if order has promotion-type reason (1=Yes, 0=No)
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+      - name: has_marketing
+        description: Flag indicating if order has marketing-type reason (1=Yes, 0=No)
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+      - name: has_other
+        description: Flag indicating if order has other-type reason (1=Yes, 0=No)
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+      - name: promotion_flag
+        description: Text flag for promotion presence (Has Promotion / No Promotion)
+        tests:
+          - accepted_values:
+              values: ['Has Promotion', 'No Promotion']
+
+      - name: marketing_flag
+        description: Text flag for marketing presence (Has Marketing / No Marketing)
+        tests:
+          - accepted_values:
+              values: ['Has Marketing', 'No Marketing']
+
+      - name: other_flag
+        description: Text flag for other reasons presence (Has Other / No Other)
+        tests:
+          - accepted_values:
+              values: ['Has Other', 'No Other']
