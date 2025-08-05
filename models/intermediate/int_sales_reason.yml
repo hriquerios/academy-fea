@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: int_sales_reason
+    description: Intermediate model aggregating sales reasons by order with useful flags for analysis
+    columns:
+      - name: sales_order_id
+        description: Foreign key to sales order header (primary key for this model)
+        tests:
+          - unique
+          - not_null
+
+      - name: reason_names_agg
+        description: Aggregated sales reason names separated by comma
+
+      - name: reason_types_agg
+        description: Aggregated sales reason types separated by comma
+
+      - name: has_promotion
+        description: Flag indicating if order has any promotion-type reason (1=Yes, 0=No)
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+      - name: has_marketing
+        description: Flag indicating if order has any marketing-type reason (1=Yes, 0=No)
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+      - name: has_other
+        description: Flag indicating if order has any other-type reason (1=Yes, 0=No)
+        tests:
+          - accepted_values:
+              values: [0, 1]
