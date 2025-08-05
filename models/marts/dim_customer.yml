@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: Customer dimension table combining individual persons and business stores
+    columns:
+      - name: sk_customer
+        description: Surrogate key for customer dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Natural key for customer records
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_name
+        description: Customer name (person full name or store name)
+
+      - name: customer_type
+        description: Type of person (SC = Store Contact, IN = Individual, etc.)
+
+      - name: territory_id
+        description: Sales territory assigned to customer
+
+      - name: person_id
+        description: Person ID (null for store customers)
+
+      - name: store_id
+        description: Store ID (null for individual customers)
+
+      - name: first_name
+        description: First name (for individual customers only)
+
+      - name: last_name
+        description: Last name (for individual customers only)
+
+      - name: store_sales_person_id
+        description: Sales person responsible for store (for store customers only)
+
+      - name: customer_category
+        description: Customer category (Individual, Store, Unknown)
+        tests:
+          - accepted_values:
+              values: ['Individual', 'Store', 'Unknown']

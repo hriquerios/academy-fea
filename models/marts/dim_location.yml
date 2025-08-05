@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: dim_location
+    description: Location dimension table with complete geographic hierarchy
+    columns:
+      - name: sk_location
+        description: Surrogate key for location dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: address_id
+        description: Natural key for address records
+        tests:
+          - unique
+          - not_null
+
+      - name: address_line_1
+        description: First line of the address
+
+      - name: city_name
+        description: Name of the city
+        tests:
+          - not_null
+
+      - name: postal_code
+        description: Postal code or ZIP code
+
+      - name: state_province_name
+        description: Name of the state or province
+        tests:
+          - not_null
+
+      - name: state_province_code
+        description: State or province code abbreviation
+
+      - name: country_name
+        description: Name of the country
+        tests:
+          - not_null
+
+      - name: country_region_code
+        description: ISO standard country or region code
+
+      - name: territory_name
+        description: Sales territory name
+
+      - name: territory_group
+        description: Geographic group (North America, Europe, Pacific)
+
+      - name: territory_id
+        description: Territory ID for joins
+
+      - name: city_state
+        description: Concatenated city and state for display
+
+      - name: full_address
+        description: Complete address string for display

@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: Product dimension table with complete product hierarchy and attributes
+    columns:
+      - name: sk_product
+        description: Surrogate key for product dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        description: Natural key for product records
+        tests:
+          - unique
+          - not_null
+
+      - name: product_name
+        description: Name of the product
+        tests:
+          - not_null
+
+      - name: product_number
+        description: Unique product identification number
+        tests:
+          - unique
+          - not_null
+
+      - name: list_price
+        description: Selling price of the product
+
+      - name: product_color
+        description: Product color
+
+      - name: product_size
+        description: Product size (XS, S, M, L, XL, etc.)
+
+      - name: product_line
+        description: Product line code (R = Road, M = Mountain, T = Touring, S = Standard)
+
+      - name: product_class
+        description: Product class code (H = High, M = Medium, L = Low)
+
+      - name: product_style
+        description: Product style code (W = Womens, M = Mens, U = Universal)
+
+      - name: product_category_name
+        description: Product category name (Bikes, Clothing, Accessories, etc.)
+
+      - name: product_subcategory_name
+        description: Product subcategory name (Mountain Bikes, Road Bikes, Helmets, etc.)
+
+      - name: product_model_name
+        description: Product model name (Mountain-100, Road-250, etc.)
+
+      - name: product_category_id
+        description: Product category ID for joins
+
+      - name: product_subcategory_id
+        description: Product subcategory ID for joins
+
+      - name: product_model_id
+        description: Product model ID for joins
+
+      - name: category_subcategory
+        description: Concatenated category and subcategory for display
+
+      - name: product_display_name
+        description: Product name with number for display
