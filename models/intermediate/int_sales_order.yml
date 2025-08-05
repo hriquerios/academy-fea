@@ -1,0 +1,98 @@
+version: 2
+
+models:
+  - name: int_sales_order
+    description: Intermediate model combining sales order header and detail with calculated metrics
+    columns:
+      - name: sales_order_detail_id
+        description: Primary key for sales order detail records
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_order_id
+        description: Foreign key to sales order header
+        tests:
+          - not_null
+
+      - name: product_id
+        description: Foreign key to product table
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: Foreign key to customer table
+        tests:
+          - not_null
+
+      - name: sales_person_id
+        description: Foreign key to sales person table
+
+      - name: bill_to_address_id
+        description: Foreign key to billing address
+
+      - name: ship_to_address_id
+        description: Foreign key to shipping address
+
+      - name: credit_card_id
+        description: Foreign key to credit card table
+
+      - name: order_date
+        description: Date the sales order was created
+        tests:
+          - not_null
+
+      - name: due_date
+        description: Date the order is due
+
+      - name: ship_date
+        description: Date the order was shipped
+
+      - name: order_quantity
+        description: Quantity ordered per product
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: Selling price per unit
+        tests:
+          - not_null
+
+      - name: unit_price_discount
+        description: Discount percentage applied
+
+      - name: tax_amount
+        description: Total tax amount for the order
+
+      - name: tax_amount_allocated
+        description: Tax amount allocated to this line item
+
+      - name: freight
+        description: Total freight cost for the order
+
+      - name: freight_allocated
+        description: Freight cost allocated to this line item
+
+      - name: order_total_due
+        description: Total amount due for the entire order
+
+      - name: order_status
+        description: Current status of the order
+
+      - name: credit_card_approval_code
+        description: Credit card approval code
+
+      - name: gross_total
+        description: Total amount before discount (unit_price * quantity)
+        tests:
+          - not_null
+
+      - name: net_total
+        description: Total amount after discount
+        tests:
+          - not_null
+
+      - name: total_product_value
+        description: Final product value including allocated tax and freight
+        tests:
+          - not_null
