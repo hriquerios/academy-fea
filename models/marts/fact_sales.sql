@@ -34,6 +34,11 @@ with
         from {{ ref('dim_reason') }}
     )
     
+    , salesperson as (
+        select *
+        from {{ ref('dim_salesperson') }}
+    )
+    
     , fact_sales as (
         select
             order_sales.sales_order_detail_id as pk_fact_sales
@@ -43,19 +48,26 @@ with
             , location.sk_location as fk_location
             , product.sk_product as fk_product
             , reason.sk_reason as fk_reason
+            , salesperson.sk_salesperson as fk_salesperson
             , order_sales.sales_order_id
             , order_sales.sales_order_detail_id
             , order_sales.product_id
             , order_sales.customer_id
+            , order_sales.sales_person_id
             , order_sales.order_date
             , order_sales.due_date
             , order_sales.ship_date
             , product.product_name
             , product.product_category_name
             , product.product_subcategory_name  
+            , product.product_number
+            , product.product_color
+            , product.product_size
             , customer.customer_name
             , customer.customer_type
             , customer.customer_category
+            , customer.total_credit_cards
+            , customer.credit_card_category
             , location.city_name
             , location.state_province_name
             , location.country_name
@@ -68,6 +80,12 @@ with
             , reason.has_marketing
             , reason.has_other
             , reason.promotion_flag
+            , salesperson.salesperson_name
+            , salesperson.territory_name as salesperson_territory
+            , salesperson.territory_group as salesperson_territory_group
+            , salesperson.quota_performance
+            , salesperson.ytd_vs_last_year as salesperson_ytd_trend
+            , salesperson.commission_pct
             , case
                 when order_sales.order_status = 1 then 'In Process'
                 when order_sales.order_status = 2 then 'Approved'
@@ -87,7 +105,7 @@ with
             , order_sales.total_product_value
             , order_sales.gross_total as total_sales_amount
             , order_sales.order_quantity as quantity_sold
-            
+            , 1 as order_count
         from order_sales
         left join creditcard 
             on order_sales.credit_card_id = creditcard.credit_card_id
@@ -101,6 +119,8 @@ with
             on order_sales.product_id = product.product_id
         left join reason 
             on order_sales.sales_order_id = reason.sales_order_id
+        left join salesperson
+            on order_sales.sales_person_id = salesperson.salesperson_id
     )
 
 select *
