@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_salesperson
+    description: Salesperson dimension table with performance metrics and territory information
+    columns:
+      - name: sk_salesperson
+        description: Surrogate key for salesperson dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: salesperson_id
+        description: Natural key for salesperson records (business entity ID)
+        tests:
+          - unique
+          - not_null
+
+      - name: salesperson_name
+        description: Full name of the salesperson
+        tests:
+          - not_null
+
+      - name: salesperson_first_name
+        description: First name of the salesperson
+
+      - name: salesperson_last_name
+        description: Last name of the salesperson
+
+      - name: person_type
+        description: Type of person (EM = Employee, etc.)
+
+      - name: territory_name
+        description: Sales territory assigned to the salesperson
+
+      - name: territory_group
+        description: Geographic group of the territory (North America, Europe, Pacific)
+
+      - name: territory_country
+        description: Country code of the territory
+
+      - name: sales_quota
+        description: Annual sales quota target
+
+      - name: sales_ytd
+        description: Year-to-date sales amount
+
+      - name: sales_last_year
+        description: Previous year total sales
+
+      - name: bonus
+        description: Bonus amount due if quota is met
+
+      - name: commission_pct
+        description: Commission percentage on sales
+
+      - name: quota_performance
+        description: Performance against quota (Above/Near/Below Quota, No Quota)
+        tests:
+          - accepted_values:
+              values: ['Above Quota', 'Near Quota', 'Below Quota', 'No Quota']
+
+      - name: ytd_vs_last_year
+        description: Year-to-date performance vs last year (Growth/Stable/Decline)
+        tests:
+          - accepted_values:
+              values: ['Growth', 'Stable', 'Decline']
+
+      - name: quota_achievement_pct
+        description: Percentage of quota achieved (YTD sales / quota * 100)

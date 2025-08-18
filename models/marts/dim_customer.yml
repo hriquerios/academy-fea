@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_customer
-    description: Customer dimension table combining individual persons and business stores
+    description: Customer dimension table combining individual persons and business stores with credit card information
     columns:
       - name: sk_customer
         description: Surrogate key for customer dimension
@@ -40,8 +40,22 @@ models:
       - name: store_sales_person_id
         description: Sales person responsible for store (for store customers only)
 
+      - name: total_credit_cards
+        description: Total number of credit cards associated with this customer
+        tests:
+          - not_null
+
+      - name: credit_card_ids
+        description: Comma-separated list of credit card IDs for this customer
+
       - name: customer_category
         description: Customer category (Individual, Store, Unknown)
         tests:
           - accepted_values:
               values: ['Individual', 'Store', 'Unknown']
+
+      - name: credit_card_category
+        description: Credit card usage category based on number of cards
+        tests:
+          - accepted_values:
+              values: ['No Credit Cards', 'Single Credit Card', 'Multiple Credit Cards', 'Many Credit Cards']
